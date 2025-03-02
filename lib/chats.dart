@@ -12,7 +12,7 @@ class _StaticPageState extends State<StaticPage> {
   final List<Widget> pages = [UserChats(),UpdatesPage(),Center(child: Text("Groups", style: TextStyle(color: Colors.white, fontSize: 20))),
     Center(child: Text("Calls", style: TextStyle(color: Colors.white, fontSize: 20))),];
 
-  int curr_index = 0;
+  int curr_index = 1; 
 
   @override
   Widget build(BuildContext context) {
@@ -21,30 +21,36 @@ class _StaticPageState extends State<StaticPage> {
         index: curr_index,
         children: pages,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: Colors.black,
-            selectedItemColor: const Color.fromARGB(255, 58, 249, 64),
-            unselectedItemColor: Colors.white,
-            currentIndex: curr_index,
-            onTap: (index) {
-              setState(
-                () {
-                  curr_index = index;
-                },
-              );
-            },
-            items: [
-              BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chats"),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.update),
-                label: "Updates",
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.groups_3_outlined), label: "Groups"),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.call_outlined), label: "Calls"),
-            ]),
+      bottomNavigationBar: Theme(
+        data: ThemeData(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+        ),
+        child: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: Colors.black,
+              selectedItemColor: const Color.fromARGB(255, 58, 249, 64),
+              unselectedItemColor: Colors.white,
+              currentIndex: curr_index,
+              onTap: (index) {
+                setState(
+                  () {
+                    curr_index = index;
+                  },
+                );
+              },
+              items: [
+                BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chats"),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.update),
+                  label: "Updates",
+                ),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.groups_3_outlined), label: "Groups"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.call_outlined), label: "Calls"),
+              ]),
+      ),
     );
   }
 }
