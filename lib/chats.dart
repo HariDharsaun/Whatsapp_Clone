@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/calls.dart';
+import 'package:whatsapp_clone/groups.dart';
 import 'package:whatsapp_clone/updates.dart';
 
 class StaticPage extends StatefulWidget {
@@ -9,10 +11,9 @@ class StaticPage extends StatefulWidget {
 }
 
 class _StaticPageState extends State<StaticPage> {
-  final List<Widget> pages = [UserChats(),UpdatesPage(),Center(child: Text("Groups", style: TextStyle(color: Colors.white, fontSize: 20))),
-    Center(child: Text("Calls", style: TextStyle(color: Colors.white, fontSize: 20))),];
+  final List<Widget> pages = [UserChats(),UpdatesPage(),CommunityPage(),CallsPage()];
 
-  int curr_index = 1; 
+  int curr_index = 0; 
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class _StaticPageState extends State<StaticPage> {
                   label: "Updates",
                 ),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.groups_3_outlined), label: "Groups"),
+                    icon: Icon(Icons.groups_3_outlined), label: "Communities"),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.call_outlined), label: "Calls"),
               ]),
@@ -63,7 +64,7 @@ class UserChats extends StatefulWidget {
 }
 
 class _UserChatsState extends State<UserChats> {
-  final List<Widget> pages = [UserChats(), UpdatesPage()];
+
   Widget chats(String title, String subtitle, String time) {
     return ListTile(
       textColor: Colors.white,
@@ -80,9 +81,15 @@ class _UserChatsState extends State<UserChats> {
             color: Colors.white,
           )),
       title: Text(title),
-      subtitle: Text(
-        subtitle,
-        style: TextStyle(color: Colors.white70),
+      subtitle: Row(
+        children: [
+          Icon(Icons.done_all,color: Colors.blue,size: 15,),
+          SizedBox(width: 5,),
+          Text(
+          subtitle,
+          style: TextStyle(color: Colors.white70),
+        ),
+        ]
       ),
       trailing: Text(time),
     );
@@ -146,56 +153,53 @@ class _UserChatsState extends State<UserChats> {
                   ),
                 ]),
               ),
-              Container(
-                width: double.infinity,
-                margin: EdgeInsets.only(left: 10, right: 10, top: 3),
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                        margin: EdgeInsets.only(right: 30, left: 10),
-                        child: Icon(
-                          Icons.archive_outlined,
-                          color: Colors.white,
-                        )),
-                    Text(
-                      "Archived",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15),
-                    )
-                  ],
-                ),
-              ),
+              //Archived Container
+              // Container(
+              //   width: double.infinity,
+              //   margin: EdgeInsets.only(left: 10, right: 10, top: 3),
+              //   padding: EdgeInsets.all(10),
+              //   decoration: BoxDecoration(
+              //     color: Colors.black,
+              //   ),
+              //   child: Row(
+              //     children: [
+              //       Container(
+              //           margin: EdgeInsets.only(right: 30, left: 10),
+              //           child: Icon(
+              //             Icons.archive_outlined,
+              //             color: Colors.white,
+              //           )),
+              //       Text(
+              //         "Archived",
+              //         style: TextStyle(
+              //             color: Colors.white,
+              //             fontWeight: FontWeight.bold,
+              //             fontSize: 15),
+              //       )
+              //     ],
+              //   ),
+              // ),
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.all(5),
                   child: ListView(
                     children: [
-                      chats("Eshwar college 2y sep24",
-                          "GATEFORUM Coimbatore Academy:", "5:25 pm"),
-                      chats("Probability & StatisticsClas...",
-                          "valliganesh: Intriduction to random..", "3:54 pm"),
-                      chats("CSE A (UNOFFICIAL GROUP)",
-                          "varna: Hi one! Suggest your opinion", "3:28 pm"),
-                      chats("SECE 2027 Group B", "Rajasekar bpsr: Video",
-                          "3:16 pm"),
-                      chats("Astranova 2k25",
-                          "+91 93636 59506 joined using this gr...", "4:56 pm"),
-                      chats("CSE - A(SOCIAL)",
-                          "Sreemathy: Representative to mee...", "2.25 pm"),
-                      chats("Radiant IT Services 6",
-                          "Darshan Nibe Patil: Learn Dat...", "2.25 pm"),
-                      chats("Guru Vishal CSE Sece",
-                          "Sri Eshwar College of Engineering stu.", "11:42 am"),
-                      chats("Suseendran CSE B Sece",
-                          "Student OD form - Center for In..", "9.07 am"),
-                      chats("Nithyasarathy (RM)", "hi how are you ?...",
+                      chats("Thalapathy", "Leo 2 varumaa naa?","3:16 pm"),
+                      chats("Samantha","Hi Hari,I am your big fan", "5:25 pm"),
+                      chats("Priyanka Mohan",
+                          "You looks beautifull", "3:54 pm"),
+                      chats("Trisha","Hi SweetHeart...", "3:28 pm"),
+                      chats("Kari Kada Bhai","10 Kilo kari kudu bhai","4:56 pm"),
+                      chats("Manitha Kadavul",
+                          "Kadavuleyyyy Ajitheeyyyy...", "2.25 pm"),
+                      chats("Thala",
+                          "Cup uh mukkiyoom thala", "11:42 am"),
+                      chats("Kayadu Lohar",
+                          "Dragon movie super kaaa...", "9.07 am"),
+                      chats("Crush", "Naalaiki Movie poolaama?",
                           "10.00 am"),
+                      chats("Saiman",
+                        "What Bro,It's very Wrong Bro....", "2.25 pm"),
                     ],
                   ),
                 ),
@@ -204,7 +208,7 @@ class _UserChatsState extends State<UserChats> {
           ),
           Positioned(
             right: 20,
-            bottom: 50,
+            bottom: 30,
             child: FloatingActionButton(
               onPressed: () {},
               backgroundColor: const Color.fromARGB(255, 58, 249, 64),
