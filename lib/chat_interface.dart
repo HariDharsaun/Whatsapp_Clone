@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ChatInterface extends StatefulWidget {
-  const ChatInterface({super.key});
+  String userName;
+  ChatInterface(this.userName,{super.key}
+  );
 
   @override
   State<ChatInterface> createState() => _ChatInterfaceState();
@@ -20,13 +22,15 @@ class _ChatInterfaceState extends State<ChatInterface> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: Icon(
               Icons.arrow_back,
               color: Colors.white,
             )),
         title: Text(
-          "User 1",
+          widget.userName,
           style: TextStyle(color: Colors.white),
         ),
         actions: [
@@ -47,27 +51,41 @@ class _ChatInterfaceState extends State<ChatInterface> {
       body: Column(children: [
         Expanded(
           child: ListView.builder(
+            reverse: true,
             itemCount: messages.length,
             itemBuilder: (BuildContext, Index) {
             return Padding(
               padding: EdgeInsets.all(10),
-              child: Container(
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft:Radius.circular(10),
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10)
-                    ),
-                    color: const Color.fromARGB(255, 57, 108, 59),
+              child: Wrap(
+                alignment: WrapAlignment.end,
+                children: [ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width - 100,
                   ),
-                  child: Row(children: [
-                    Text(messages[Index],style: TextStyle(color: Colors.white,fontSize: 18),),
-                    SizedBox(width: 5,),
-                    Text("10:54 am",style: TextStyle(color:Colors.white70,fontSize: 13),),
-                    Icon(Icons.done_all,color: Colors.white70,size: 15,)
-                  ]),
-                ),
+                  child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft:Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20)
+                        ),
+                        color: const Color.fromARGB(255, 57, 108, 59),
+                      ),
+                      child: IntrinsicWidth(
+                        child: Wrap(
+                          alignment:  WrapAlignment.end,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                          Text(messages[Index],style: TextStyle(color: Colors.white,fontSize: 18),),
+                          SizedBox(width: 5,),
+                          Text("12:00 am",style: TextStyle(color:Colors.white70,fontSize: 13),),
+                          Icon(Icons.done_all,color: Colors.white70,size: 15,)
+                        ]),
+                      ),
+                    ),
+                ),]
+              ),
             );
           }),
         ),
@@ -136,7 +154,7 @@ class _ChatInterfaceState extends State<ChatInterface> {
                     setState(() {
                       if(!_textController.text.isEmpty)
                       {
-                        messages.add(_textController.text);
+                        messages.insert(0,_textController.text);
                         _textController.clear();
                         showIcons = true;
                         sent = Icon(Icons.mic,color: Colors.black,);

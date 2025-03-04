@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/calls.dart';
+import 'package:whatsapp_clone/chat_interface.dart';
 import 'package:whatsapp_clone/groups.dart';
 import 'package:whatsapp_clone/updates.dart';
 
@@ -67,6 +68,9 @@ class _UserChatsState extends State<UserChats> {
 
   Widget chats(String title, String subtitle, String time) {
     return ListTile(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatInterface(title)));
+      },
       textColor: Colors.white,
       leading: Container(
           width: 50,
@@ -95,6 +99,13 @@ class _UserChatsState extends State<UserChats> {
     );
   }
 
+  final List<List<String>> names = [
+    ["Thalapathy","Leo 2 varumaa naa?","3:16 pm"],["Crush", "Naalaiki Movie poolaama?","10.00 pm"],
+    ["Samantha","Hi Hari,I am your big fan", "5:25 pm"],["Priyanka Mohan","You looks beautifull", "3:54 pm"],
+    ["Trisha","Hi SweetHeart...", "3:28 pm"],["Kari Kada Bhai","10 Kilo kari kudu bhai","4:56 pm"],
+    ["Manitha Kadavul","Kadavuleyyyy Ajitheeyyyy...", "2.25 pm"],["Thala","Cup uh mukkiyoom thala", "11:42 am"],
+    ["Kayadu Lohar","Dragon movie super kaaa...", "9.07 am"],["Saiman","What Bro,It's very Wrong Bro....", "2.25 pm"]
+  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -182,25 +193,11 @@ class _UserChatsState extends State<UserChats> {
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.all(5),
-                  child: ListView(
-                    children: [
-                      chats("Thalapathy", "Leo 2 varumaa naa?","3:16 pm"),
-                      chats("Samantha","Hi Hari,I am your big fan", "5:25 pm"),
-                      chats("Priyanka Mohan",
-                          "You looks beautifull", "3:54 pm"),
-                      chats("Trisha","Hi SweetHeart...", "3:28 pm"),
-                      chats("Kari Kada Bhai","10 Kilo kari kudu bhai","4:56 pm"),
-                      chats("Manitha Kadavul",
-                          "Kadavuleyyyy Ajitheeyyyy...", "2.25 pm"),
-                      chats("Thala",
-                          "Cup uh mukkiyoom thala", "11:42 am"),
-                      chats("Kayadu Lohar",
-                          "Dragon movie super kaaa...", "9.07 am"),
-                      chats("Crush", "Naalaiki Movie poolaama?",
-                          "10.00 am"),
-                      chats("Saiman",
-                        "What Bro,It's very Wrong Bro....", "2.25 pm"),
-                    ],
+                  child: ListView.builder(
+                    itemCount: names.length,
+                    itemBuilder: (context,Index){
+                      return chats(names[Index][0], names[Index][1], names[Index][2]);
+                    },
                   ),
                 ),
               ),
