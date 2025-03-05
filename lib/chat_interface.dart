@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class ChatInterface extends StatefulWidget {
   String userName;
-  ChatInterface(this.userName,{super.key}
+  String subtitle;
+  ChatInterface(this.userName,this.subtitle,{super.key}
   );
 
   @override
@@ -155,6 +156,7 @@ class _ChatInterfaceState extends State<ChatInterface> {
                       if(!_textController.text.isEmpty)
                       {
                         messages.insert(0,_textController.text);
+                        widget.subtitle = _textController.text;
                         _textController.clear();
                         showIcons = true;
                         sent = Icon(Icons.mic,color: Colors.black,);

@@ -1,0 +1,2 @@
+C:/Users/harid/OneDrive/Documents/Flutter projects/Whatsapp_Ui_clone/whatsapp_clone/android/app/.cxx/Debug/t5y3w60x/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/harid/OneDrive/Documents/Flutter projects/Whatsapp_Ui_clone/whatsapp_clone/android/app/.cxx/Debug/t5y3w60x/armeabi-v7a/CMakeFiles/rebuild_cache.dir

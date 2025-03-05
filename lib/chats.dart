@@ -69,7 +69,7 @@ class _UserChatsState extends State<UserChats> {
   Widget chats(String title, String subtitle, String time) {
     return ListTile(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatInterface(title)));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatInterface(title,subtitle)));
       },
       textColor: Colors.white,
       leading: Container(
