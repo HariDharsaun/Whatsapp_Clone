@@ -19,7 +19,10 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/appLogo/WhatsApp Logo"
+  image_path: "assets/appLogo/WhatsApp_logo.jpg"
 
 flutter:
   uses-material-design: true
+  
+  assets:
+    - assets/
